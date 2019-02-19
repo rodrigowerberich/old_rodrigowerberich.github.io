@@ -1,0 +1,59 @@
+html{
+    font-size: 1.25em;
+}
+
+body {
+    font-family: "Crimson Text", "Times New Roman", serif;
+    background-color: #272727;
+    color: #FFF;
+    font-size: 120%;
+    line-height: 1.5;
+}
+
+.main-title {
+    text-align: center;
+    background-color: #ffD522;
+    color: #272727;
+    padding: 1rem;
+    border-bottom: .5rem solid #000;
+}
+
+h1{
+    font-size: 3em;
+    color: #272727;
+    border-bottom: 1px solid white;
+    width: 5ch;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+main p {
+    text-align: justify;
+    margin: 1em 0;
+}
+
+.container {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem 0;
+}
+
+.container h2{
+    font-weight: bold;
+    font-size: 1.25em;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.prettyprint{
+    background-color: #FFF;
+}
+
+strong{
+    font-weight: bold;
+}
+
+em{
+    font-style: italic;
+}
