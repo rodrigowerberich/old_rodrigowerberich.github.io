@@ -75,11 +75,23 @@ main a:focus{
     border-bottom: 1px solid white;
 }
 
+.show-code{
+    text-align: center;
+}
+
+.show-code p{
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
 .prettyprint{
     background-color: #FFF;
     display: inline-block;
     margin-left: auto; 
     margin-right: auto;
+    text-align: left;
 
 }
 
@@ -99,11 +111,4 @@ em{
 
 .internal-page-navigation li~li{
     border-left: 1px solid #272727;
-}
-
-.show-code p{
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: center;
 }
