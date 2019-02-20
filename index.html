@@ -15,6 +15,7 @@
                 <ul>
                     <li><a href="#why">Why?</a></li>
                     <li><a href="#how">How?</a></li>
+                    <li><a href="#creating-a-class">Creating a class</a></li>
                 </ul>
             </menu>
         </header>
@@ -50,9 +51,35 @@ int main(){
     o_int_vector = ooc_delete(o_int_vector);
 }
 </pre>
-
             </div>
+            <!-- <a name="basics"></a>
+            <h2>Basics</h2>
+            <p>In <strong>OOC (Object-Oriented C)</strong> we use pointers and structs </p> -->
+            <a name="creating-a-class"></a>
+            <h2>Creating a class</h2>
+            <p>Let's start by creating a simple class: the cat. A cat can be really simplified and be represented by a color, a weight, a length and a name. These will be our attributes.</p>
+            <p>A cat can "talk", jump and eat, amongst other things. These will be our methods, or interfaces. With than we can begin building our cat class.</p>
+            <p>In OOC a class is defined by three files,</p>
+                <ul class="text-list">
+                    <li>the public interface or <em class="file-terminations">.h</em> file,</li>
+                    <li>the reserved interface or <em class="file-terminations">.r</em> file and</li>
+                    <li>the implementation or <em class="file-terminations">.c</em> file.</li>
+                </ul>
+            <p>Let's begin with the public interface, first we must create the class itself, for that we use the <strong class="c-macro">class_declaration</strong> macro.</p>
+            <div class="show-code">
+                <p>File: cat.h</p>
+                <pre class="prettyprint lang-c">
+#ifndef CAT_H_
+#define CAT_H_
+#include "ooc.h"
 
+CLASS_DECLARATION(Cat);
+
+#endif /* CAT_H_ */
+</pre>
+            </div>
+            <p>This macro creates the type <strong class="c-normal">o_Cat</strong>, which we will use to refer to cat objects, the descriptor <strong class="c-normal">Cat_d</strong>, which is a pointer to an object that knows how to build cat objects. A forward declaration of the <strong class="c-normal">void* initCat()</strong>, a function that creates the <strong class="c-normal">Cat_d</strong> descriptor (This function must be implemented in the implementation file). And the implementation of the automatic initializer <strong class="c-normal">inline const void* CatClass()</strong>, which is what we will use to access the descriptor.</p>
         </main>
     </body>
+    <!--Continuar criando a classe, o próximo passo é fazer o construtor -->
 </html>

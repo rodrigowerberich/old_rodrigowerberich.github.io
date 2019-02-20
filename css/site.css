@@ -112,3 +112,24 @@ em{
 .internal-page-navigation li~li{
     border-left: 1px solid #272727;
 }
+
+.file-terminations{
+    font-style: italic;
+    font-weight: bold;
+}
+
+.text-list{
+    list-style-type: disc;
+    padding-left: 5ch;
+}
+
+.c-macro{
+    text-transform: uppercase;
+    color: #6b81ff;
+    font-weight: bold;
+}
+
+.c-normal{
+    color: #6b81ff;
+    font-weight: bold;
+}
