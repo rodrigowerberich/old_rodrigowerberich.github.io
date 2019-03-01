@@ -41,14 +41,17 @@ int main(){
     o_Vector o_int_vector = VectorC(int);
     Collection_inplaceAddAllC(o_string_vector, int, ARG({1, 2, 3, 4}));
     o_Iterator o_iterator = Iterable_create(o_int_vector);
+    Collection_add(INT(5));
+    Collection_add(INT(6));
     for_iterator(o_iterator){
         int* p_int = Iterator_currItem(o_iterator);
         if(p_int){
-            printf("%d\n", *p_int);
+            printf("%d,", *p_int); // Will print out 1,2,3,4,5,6,
         }
     }
-    o_iterator = ooc_delete(o_iterator);
-    o_int_vector = ooc_delete(o_int_vector);
+    printf("\n");
+    OOC_DELETE(o_iterator);
+    OOC_DELETE(o_int_vector);
 }
 </pre>
             </div>
@@ -65,6 +68,7 @@ int main(){
                     <li>the reserved interface or <em class="file-terminations">.r</em> file and</li>
                     <li>the implementation or <em class="file-terminations">.c</em> file.</li>
                 </ul>
+            <h3>Public Interface</h3>
             <p>Let's begin with the public interface, first we must create the class itself, for that we use the <strong class="c-macro">class_declaration</strong> macro.</p>
             <div class="show-code">
                 <p>File: cat.h</p>
@@ -73,13 +77,67 @@ int main(){
 #define CAT_H_
 #include "ooc.h"
 
-CLASS_DECLARATION(Cat);
+    CLASS_DECLARATION(Cat);
 
 #endif /* CAT_H_ */
 </pre>
             </div>
             <p>This macro creates the type <strong class="c-normal">o_Cat</strong>, which we will use to refer to cat objects, the descriptor <strong class="c-normal">Cat_d</strong>, which is a pointer to an object that knows how to build cat objects. A forward declaration of the <strong class="c-normal">void* initCat()</strong>, a function that creates the <strong class="c-normal">Cat_d</strong> descriptor (This function must be implemented in the implementation file). And the implementation of the automatic initializer <strong class="c-normal">inline const void* CatClass()</strong>, which is what we will use to access the descriptor.</p>
+            <!--Continuar criando a classe, o próximo passo é fazer o construtor -->
+            <p>The next step is to create the constructors of your class, to do that we create inline functions that makes cals to the <strong class="c-normal">ooc_new</strong> function.</p>
+            <div class="show-code">
+                <p>File: cat.h</p>
+                <pre class="prettyprint lang-c">
+...
+// Empty constructor
+static inline o_Cat Cat(){
+    return ooc_new(CatClass());
+}
+// Complete constructor
+static inline o_Cat CatSpecified(int color, float weight, float length, o_String name){
+    return ooc_new(CatClass(), color, weight, length, name);
+}
+...
+</pre>
+            </div>
+            <p>Now we must specify what our cat can do. We do it simply be creating functions that takes as the first parameter the class object. This is will be our methods:</p>
+            <div class="show-code">
+                <p>File: cat.h</p>
+                <pre class="prettyprint lang-c">
+...
+void Cat_jump(o_Cat self, float distance);
+void Cat_eat(o_Cat self);
+o_String Cat_talk(o_Cat self); 
+...
+</pre>
+            </div>
+            <p>With that our basic class public interface file is complete!</p>
+            <div class="show-code">
+                <p>File: cat.h</p>
+                <pre class="prettyprint lang-c">
+#ifndef CAT_H_
+#define CAT_H_
+#include "ooc.h"
+    //---- Class declaration
+    CLASS_DECLARATION(Cat);
+    //----  Class constructor
+    // Empty constructor
+    static inline o_Cat Cat(){
+        return ooc_new(CatClass());
+    }
+    // Complete constructor
+    static inline o_Cat CatSpecified(int color, float weight, float length, o_String name){
+        return ooc_new(CatClass(), color, weight, length, name);
+    }
+    //---- Methods
+    // Static methods
+    void Cat_jump(o_Cat self, float distance);
+    void Cat_eat(o_Cat self);
+    o_String Cat_talk(o_Cat self);
+#endif /* CAT_H_ */
+</pre>
+            </div>
+            <!-- <h3>Restricted interface</h3> -->
         </main>
     </body>
-    <!--Continuar criando a classe, o próximo passo é fazer o construtor -->
 </html>

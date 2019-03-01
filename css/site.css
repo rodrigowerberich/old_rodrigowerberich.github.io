@@ -15,7 +15,8 @@ body {
 }
 
 h1,
-h2{
+h2,
+h3{
     font-family: "Open Sans Condensed", "Arial", sans-serif;
 }
 
@@ -73,6 +74,12 @@ main a:focus{
     font-size: 1.25em;
     text-align: center;
     border-bottom: 1px solid white;
+}
+
+.container h3{
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
 }
 
 .show-code{
